@@ -1,0 +1,9 @@
+import FWCore.ParameterSet.Config as cms
+
+demo = cms.EDAnalyzer('L1Analyzer',
+                      ecalDigis               = cms.InputTag( 'l1tCaloLayer1Digis'),
+                      hcalDigis               = cms.InputTag( 'l1tCaloLayer1Digis')
+                      
+
+
+)
