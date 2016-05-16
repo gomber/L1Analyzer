@@ -45,7 +45,8 @@
 #include "DataFormats/METReco/interface/PFMET.h"
 
 #include "DataFormats/EgammaCandidates/interface/GsfElectronFwd.h"
-
+#include "DataFormats/METReco/interface/CaloMETCollection.h"
+#include "DataFormats/METReco/interface/CaloMET.h"
 
 using namespace std;
 
@@ -80,6 +81,7 @@ class L1Analyzer : public edm::EDAnalyzer {
   edm::EDGetTokenT<vector <l1extra::L1EmParticle> > l1ExtraIsoEMSource_;
   edm::EDGetTokenT<vector <l1extra::L1EmParticle> > l1ExtraEMSource_;
   edm::EDGetTokenT<reco::PFMETCollection>     pfMetToken_;
+  edm::EDGetTokenT<reco::CaloMETCollection>     caloMetToken_;
 
   edm::EDGetTokenT<reco::GsfElectronCollection>       ElectronToken_;
   edm::EDGetTokenT<edm::ValueMap<bool> >              ElectronVetoIdMapToken_;
@@ -91,6 +93,7 @@ class L1Analyzer : public edm::EDAnalyzer {
   float l1met_, l1ettot_,l1metstage2_,l1ettotstage2_,l1metphi_;
   float l1mht_, l1ethad_,l1mhtstage2_,l1ethadstage2_;
   float PFmet_,PFmetphi_,PFSumet_,PFmeteta_,PFmetpx_,PFmetpy_;
+  float Calomet_,Calometphi_,CaloSumet_,Calometeta_,Calometpx_,Calometpy_;
   float l1metpx_,l1metpy_,l1meteta_;
   float l1metstage2px_,l1metstage2py_,l1metstage2eta_,l1metstage2phi_;
   std::vector<float> l1isoEmEt_;

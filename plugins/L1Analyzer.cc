@@ -45,6 +45,7 @@ L1Analyzer::L1Analyzer(const edm::ParameterSet& cfg):
   l1ExtraIsoEMSource_(consumes<vector <l1extra::L1EmParticle> >(cfg.getParameter<edm::InputTag>("l1ExtraIsoEMSource"))),
   l1ExtraEMSource_(consumes<vector <l1extra::L1EmParticle> >(cfg.getParameter<edm::InputTag>("l1ExtraEMSource"))),
   pfMetToken_(consumes<reco::PFMETCollection>(cfg.getUntrackedParameter<edm::InputTag>("pfMetToken"))),
+  caloMetToken_(consumes<reco::CaloMETCollection>(cfg.getUntrackedParameter<edm::InputTag>("caloMetToken"))),
   ElectronToken_(consumes<reco::GsfElectronCollection>(cfg.getUntrackedParameter<edm::InputTag>("ElectronToken"))),
   ElectronVetoIdMapToken_(consumes<edm::ValueMap<bool> >(cfg.getUntrackedParameter<edm::InputTag>("eleVetoIdMapToken"))),
   ElectronLooseIdMapToken_(consumes<edm::ValueMap<bool> >(cfg.getUntrackedParameter<edm::InputTag>("eleLooseIdMapToken"))),
@@ -168,6 +169,10 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
   edm::Handle<reco::PFMETCollection> pfMet;
   evt.getByToken(pfMetToken_, pfMet);
 
+
+  edm::Handle<reco::CaloMETCollection> caloMet;
+  evt.getByToken(caloMetToken_, caloMet);
+
   edm::Handle<reco::GsfElectronCollection> recoElectrons;
   evt.getByToken(ElectronToken_, recoElectrons);
 
@@ -246,13 +251,29 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
       PFmetpy_ = it->py();
       PFmeteta_ = it->eta();
       PFSumet_ = it->sumEt();
-      std::cout<<"PFMET: "<<PFmet_<<std::endl;
+      //      std::cout<<"PFMET: "<<PFmet_<<" PFSumet_:"<<PFSumet_<<std::endl;
       
     }
   }
 
 
-  if(recoElectrons.isValid() && eleVIDDecisionHandles[0].isValid() && eleVIDDecisionHandles[1].isValid() && eleVIDDecisionHandles[2].isValid() && eleVIDDecisionHandles[3].isValid())
+
+
+  if (caloMet.isValid()) {
+    for(reco::CaloMETCollection::const_iterator it = caloMet->begin(); it!= caloMet->end(); it++ ){
+      Calomet_ = it->et();
+      Calometphi_ = it->phi();
+      Calometpx_ = it->px();
+      Calometpy_ = it->py();
+      Calometeta_ = it->eta();
+      CaloSumet_ = it->sumEt();
+      //      std::cout<<"CaloMET: "<<Calomet_<<" CaloSumet_:"<<CaloSumet_<<std::endl;
+      
+    }
+  }
+
+
+  if(recoElectrons.isValid())
     {
       for(reco::GsfElectronCollection::const_iterator el=recoElectrons->begin(); el!=recoElectrons->end(); el++) {
 	Elee_.push_back(el->energy());    
@@ -341,6 +362,8 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
 		  l1metstage2eta_=it->eta();
 		  l1metstage2phi_=it->phi();
 		}
+
+	      //std::cout<<"Stage 2 total et :"<<l1ettotstage2_<<" and total MET: "<<l1metstage2_<<std::endl;
 	      if(type==3) l1mhtstage2_=it->et();
 	      //    std::cout<<"type: "<< type<<" Stage2 ET: "<<it->et()<<std::endl;
 	      //std::cout<<"Stage2 Total ET: "<<l1ettotstage2_<<" "<<std::endl;
@@ -368,8 +391,8 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
       l1meteta_ = l1met->eta();
       l1metpx_ = l1met->px();
       l1metpy_ = l1met->py();
-      std::cout<<"Stage3 phi: "<<l1metphi_<<std::endl;
-      //std::cout<<"Stage3 Total ET: "<<l1ettot_<<std::endl;
+      //std::cout<<"Stage3 phi: "<<l1metphi_<<std::endl;
+      //      std::cout<<"Stage3 Total ET: "<<l1ettot_<<" and Met: "<<l1met_<<std::endl;
     }
     
   }
@@ -391,6 +414,7 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
       l1isoEmPhi_.push_back(l1isoem->phi());
       l1isoEmBx_.push_back(l1isoem->bx());
       nl1isoEm_++;
+      std::cout<<"l1 Iso EM Stage 2:"<<l1isoem->et()<<std::endl;
     }
     
   }
