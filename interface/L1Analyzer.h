@@ -82,6 +82,7 @@ class L1Analyzer : public edm::EDAnalyzer {
   edm::EDGetTokenT<vector <l1extra::L1EmParticle> > l1ExtraEMSource_;
   edm::EDGetTokenT<reco::PFMETCollection>     pfMetToken_;
   edm::EDGetTokenT<reco::CaloMETCollection>     caloMetToken_;
+  edm::EDGetTokenT<reco::CaloMETCollection>     caloMetTokenBE_;
 
   edm::EDGetTokenT<reco::GsfElectronCollection>       ElectronToken_;
   edm::EDGetTokenT<edm::ValueMap<bool> >              ElectronVetoIdMapToken_;
@@ -94,6 +95,7 @@ class L1Analyzer : public edm::EDAnalyzer {
   float l1mht_, l1ethad_,l1mhtstage2_,l1ethadstage2_;
   float PFmet_,PFmetphi_,PFSumet_,PFmeteta_,PFmetpx_,PFmetpy_;
   float Calomet_,Calometphi_,CaloSumet_,Calometeta_,Calometpx_,Calometpy_;
+  float CalometBE_,CalometBEphi_,CaloSumetBE_,CalometBEeta_,CalometBEpx_,CalometBEpy_;
   float l1metpx_,l1metpy_,l1meteta_;
   float l1metstage2px_,l1metstage2py_,l1metstage2eta_,l1metstage2phi_;
   std::vector<float> l1isoEmEt_;
@@ -116,10 +118,14 @@ class L1Analyzer : public edm::EDAnalyzer {
   std::vector<float> Elecharge_;
   std::vector<float> Eleiso_;
 
-  std::vector<float> EleisVetoElectron_;
-  std::vector<float> EleisLooseElectron_;
-  std::vector<float> EleisMediumElectron_;
-  std::vector<float> EleisTightElectron_;
+  std::vector<short> EleisVetoElectron_;
+  std::vector<short> EleisLooseElectron_;
+  std::vector<short> EleisMediumElectron_;
+  std::vector<short> EleisTightElectron_;
+
+
+
+
 
  
 
@@ -133,3 +139,6 @@ class L1Analyzer : public edm::EDAnalyzer {
 };
 
 #endif
+
+/*  LocalWords:  Calometpy
+ */

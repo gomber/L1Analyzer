@@ -1,0 +1,192 @@
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+L1TRawToDigi Sequence configured for Stage-2 (2016) trigger. 
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+L1TCalorimeter Sequence configured for Stage-2 (2016) trigger. 
+L1TMuon Sequence configured for Stage-2 (2016) trigger. 
+L1TGlobal Sequence configured for Stage-2 (2016) trigger. 
+L1TCalorimeter Conditions configured for Stage-2 (2016) trigger. 
+L1TMuon Conditions configured for Stage-2 (2016) trigger. 
+L1TGlobal Conditions configured for Stage-2 (2016) trigger. 
+DEBUG 2016-05-17 07:32:42,855: 	 Executing command: 'submit'
+DEBUG 2016-05-17 07:32:42,856: 	 Found CRAB cache file /home/gomber/.crab3
+DEBUG 2016-05-17 07:32:42,878: 	 Checking credentials
+DEBUG 2016-05-17 07:32:42,879: 	 Found proxy file /tmp/x509up_u4322
+DEBUG 2016-05-17 07:32:42,879: 	 Getting proxy life time left
+DEBUG 2016-05-17 07:32:42,984: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u4322 -timeleft
+ output : 74014
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:43,089: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u4322 -actimeleft
+ output : 74013
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:43,090: 	 Proxy valid for 20:33:34 hours
+INFO 2016-05-17 07:32:43,090: 	 Will use CRAB configuration file crabMC.py
+DEBUG 2016-05-17 07:32:43,090: 	 Loading CRAB configuration file.
+DEBUG 2016-05-17 07:32:43,098: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2016-05-17 07:32:43,224: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gomber/CN=706551/CN=Bhawna Gomber
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:43,224: 	 Checking credentials
+DEBUG 2016-05-17 07:32:43,224: 	 Found proxy file /tmp/x509up_u4322
+DEBUG 2016-05-17 07:32:43,224: 	 Getting proxy life time left
+DEBUG 2016-05-17 07:32:43,330: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u4322 -timeleft
+ output : 74013
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:43,435: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u4322 -actimeleft
+ output : 74013
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:43,436: 	 Proxy valid for 20:33:33 hours
+DEBUG 2016-05-17 07:32:43,541: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u4322 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:44,391: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+DEBUG 2016-05-17 07:32:44,507: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gomber/CN=706551/CN=Bhawna Gomber
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:44,508: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2016-05-17 07:32:44,508: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gomber/CN=706551/CN=Bhawna Gomber_cmsweb.cern.ch for credential name
+DEBUG 2016-05-17 07:32:46,116: 	 Executing : 
+ command : myproxy-info -l 24605558953e5024479826d251dff8bca9d40c7f -s myproxy.cern.ch
+ output : username: 24605558953e5024479826d251dff8bca9d40c7f
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=gomber/CN=706551/CN=Bhawna Gomber
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119).cern.ch
+  timeleft: 372:11:48  (15.5 days)
+
+ error: 
+ retcode : 0
+DEBUG 2016-05-17 07:32:46,117: 	 Myproxy is valid: 1339908
+DEBUG 2016-05-17 07:32:46,117: 	 Command use: submit
+DEBUG 2016-05-17 07:32:46,117: 	 Options use: ['--config=crabMC.py']
+DEBUG 2016-05-17 07:32:47,142: 	 CRABClient version: 3.3.1605
+DEBUG 2016-05-17 07:32:47,142: 	 Instance is prod
+DEBUG 2016-05-17 07:32:47,142: 	 Server base url is cmsweb.cern.ch
+DEBUG 2016-05-17 07:32:47,142: 	 Command url /crabserver/prod/workflow
+DEBUG 2016-05-17 07:32:47,142: 	 Started submission
+DEBUG 2016-05-17 07:32:47,142: 	 Working on /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/test/crab_workArea/crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted
+DEBUG 2016-05-17 07:32:48,155: 	 Loading required information from the environment
+DEBUG 2016-05-17 07:32:48,156: 	 Found CMSSW_8_0_7 for slc6_amd64_gcc530 with base /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7
+DEBUG 2016-05-17 07:32:48,210: 	 UNIQUE NAME: tarUUID efeec4a4-0497-4d46-9507-fde70317c830 
+DEBUG 2016-05-17 07:32:48,211: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.transferLogs = False
+config.General.transferOutputs = True
+config.General.workArea = 'crab_workArea'
+config.General.requestName = 'WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted'
+config.section_('JobType')
+config.JobType.psetName = 'test_summary_mc.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.allowUndistributedCMSSW = True
+config.section_('Data')
+config.Data.inputDataset = '/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIIFall15DR76-25nsFlat10to50ZsecalNzshcalRaw_76X_mcRun2_asymptotic_2016EcalTune_30fb_v1-v1/AODSIM'
+config.Data.publication = False
+config.Data.unitsPerJob = 1
+config.Data.splitting = 'FileBased'
+config.Data.inputDBS = 'global'
+config.Data.useParent = True
+config.Data.outLFNDirBase = '/store/user/gomber'
+config.Data.totalUnits = -1
+config.section_('Site')
+config.Site.storageSite = 'T2_US_Wisconsin'
+config.section_('User')
+config.section_('Debug')
+
+DEBUG 2016-05-17 07:32:48,211: 	 self.config.JobType.psetName: test_summary_mc.py
+INFO 2016-05-17 07:32:48,211: 	 Importing CMSSW configuration test_summary_mc.py
+INFO 2016-05-17 07:32:51,961: 	 Finished importing CMSSW configuration test_summary_mc.py
+DEBUG 2016-05-17 07:32:51,962: 	 Writing CMSSW configuration to /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/test/crab_workArea/crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted/inputs/PSet.py
+DEBUG 2016-05-17 07:32:52,737: 	 The following EDM output files will be collected: []
+DEBUG 2016-05-17 07:32:52,737: 	 The following TFile output files will be collected: ['Ntuple_Stage3_mc.root']
+DEBUG 2016-05-17 07:32:52,738: 	 The following user output files will be collected: []
+DEBUG 2016-05-17 07:32:52,738: 	 Loading required information from the environment
+DEBUG 2016-05-17 07:32:52,738: 	 Found CMSSW_8_0_7 for slc6_amd64_gcc530 with base /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7
+DEBUG 2016-05-17 07:32:52,738: 	 Making tarball in /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/test/crab_workArea/crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted/inputs/efeec4a4-0497-4d46-9507-fde70317c830default.tgz
+DEBUG 2016-05-17 07:32:52,739: 	 Checking directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/lib
+DEBUG 2016-05-17 07:32:52,739: 	 Adding directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/lib to tarball
+DEBUG 2016-05-17 07:33:09,520: 	 Checking directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/biglib
+DEBUG 2016-05-17 07:33:09,520: 	 Adding directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/biglib to tarball
+DEBUG 2016-05-17 07:33:09,523: 	 Checking directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/module
+DEBUG 2016-05-17 07:33:09,533: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DQMOffline/Trigger/interface to tarball
+DEBUG 2016-05-17 07:33:09,647: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DQMOffline/Trigger/data to tarball
+DEBUG 2016-05-17 07:33:09,657: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/RecoTauTag/HLTProducers/interface to tarball
+DEBUG 2016-05-17 07:33:09,681: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/RecoTracker/DeDx/interface to tarball
+DEBUG 2016-05-17 07:33:11,364: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DPGAnalysis/Skims/interface to tarball
+DEBUG 2016-05-17 07:33:11,426: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DPGAnalysis/Skims/data to tarball
+DEBUG 2016-05-17 07:33:11,576: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/ElectroWeakAnalysis/WENu/interface to tarball
+DEBUG 2016-05-17 07:33:11,596: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/ElectroWeakAnalysis/ZMuMu/interface to tarball
+DEBUG 2016-05-17 07:33:11,626: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DataFormats/L1Trigger/interface to tarball
+DEBUG 2016-05-17 07:33:11,661: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DataFormats/L1TMuon/interface to tarball
+DEBUG 2016-05-17 07:33:11,689: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DataFormats/HLTReco/interface to tarball
+DEBUG 2016-05-17 07:33:11,717: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/SUSYBSM/interface to tarball
+DEBUG 2016-05-17 07:33:11,749: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/SUSYBSM/data to tarball
+DEBUG 2016-05-17 07:33:11,753: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/JetMET/interface to tarball
+DEBUG 2016-05-17 07:33:11,762: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/JetMET/data to tarball
+DEBUG 2016-05-17 07:33:11,766: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/Muon/interface to tarball
+DEBUG 2016-05-17 07:33:11,775: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/Muon/data to tarball
+DEBUG 2016-05-17 07:33:11,779: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/Higgs/interface to tarball
+DEBUG 2016-05-17 07:33:11,788: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/Higgs/data to tarball
+DEBUG 2016-05-17 07:33:11,798: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTriggerOffline/Egamma/interface to tarball
+DEBUG 2016-05-17 07:33:11,818: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TMuonEndCap/interface to tarball
+DEBUG 2016-05-17 07:33:11,904: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TGlobal/interface to tarball
+DEBUG 2016-05-17 07:33:11,999: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TGlobal/data to tarball
+DEBUG 2016-05-17 07:33:12,027: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TNtuples/interface to tarball
+DEBUG 2016-05-17 07:33:12,116: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/HardwareValidation/interface to tarball
+DEBUG 2016-05-17 07:33:12,137: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TMuonBarrel/interface to tarball
+DEBUG 2016-05-17 07:33:12,187: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TCalorimeter/interface to tarball
+DEBUG 2016-05-17 07:33:12,271: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TCalorimeter/data to tarball
+DEBUG 2016-05-17 07:33:12,991: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TMuon/interface to tarball
+DEBUG 2016-05-17 07:33:13,042: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1TMuonOverlap/interface to tarball
+DEBUG 2016-05-17 07:33:13,257: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/interface to tarball
+DEBUG 2016-05-17 07:33:13,266: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/RecoEgamma/EgammaHLTProducers/interface to tarball
+DEBUG 2016-05-17 07:33:13,330: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/JetMET/interface to tarball
+DEBUG 2016-05-17 07:33:13,414: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/HLTanalyzers/interface to tarball
+DEBUG 2016-05-17 07:33:13,450: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/Muon/interface to tarball
+DEBUG 2016-05-17 07:33:13,493: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/special/interface to tarball
+DEBUG 2016-05-17 07:33:13,535: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/Egamma/interface to tarball
+DEBUG 2016-05-17 07:33:13,572: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/HLTcore/interface to tarball
+DEBUG 2016-05-17 07:33:13,612: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/HLTrigger/HLTfilters/interface to tarball
+DEBUG 2016-05-17 07:33:13,645: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/EventFilter/L1TRawToDigi/interface to tarball
+DEBUG 2016-05-17 07:33:13,703: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/QCDAnalysis/UEAnalysis/interface to tarball
+DEBUG 2016-05-17 07:33:13,714: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/CaloOnlineTools/EcalTools/interface to tarball
+DEBUG 2016-05-17 07:33:13,758: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/CaloOnlineTools/EcalTools/data to tarball
+DEBUG 2016-05-17 07:33:13,776: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DQM/Physics/interface to tarball
+DEBUG 2016-05-17 07:33:13,802: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/DQM/L1TMonitor/interface to tarball
+DEBUG 2016-05-17 07:33:13,882: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/MuonAnalysis/MuonAssociators/interface to tarball
+DEBUG 2016-05-17 07:33:13,903: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/Calibration/IsolatedParticles/interface to tarball
+DEBUG 2016-05-17 07:33:13,964: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/Calibration/HcalIsolatedTrackReco/interface to tarball
+DEBUG 2016-05-17 07:33:14,002: 	 Adding data directory /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/Calibration/HcalAlCaRecoProducers/interface to tarball
+DEBUG 2016-05-17 07:33:14,266: 	 Uploading archive /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/test/crab_workArea/crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted/inputs/efeec4a4-0497-4d46-9507-fde70317c830default.tgz to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2016-05-17 07:33:25,024: 	 Result uploading input files: 3339e90a4a586cfc9e4de7e81cc939d6e1d9a25ee65182f47c2e26d6ea6fdeb2.tar.gz 
+INFO 2016-05-17 07:33:25,024: 	 Sending the request to the server
+DEBUG 2016-05-17 07:33:25,024: 	 Submitting {'maxjobruntime': 1250, 'ignorelocality': 0, 'savelogsflag': 0, 'useparent': 1, 'asyncdest': 'T2_US_Wisconsin', 'algoargs': 1, 'cachefilename': '3339e90a4a586cfc9e4de7e81cc939d6e1d9a25ee65182f47c2e26d6ea6fdeb2.tar.gz', 'numcores': 1, 'addoutputfiles': [], 'generator': 'pythia', 'maxmemory': 2000, 'publishdbsurl': 'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', 'priority': 10, 'jobsw': 'CMSSW_8_0_7', 'edmoutfiles': [], 'userfiles': [], 'primarydataset': '', 'inputdata': '/WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIIFall15DR76-25nsFlat10to50ZsecalNzshcalRaw_76X_mcRun2_asymptotic_2016EcalTune_30fb_v1-v1/AODSIM', 'lfn': '/store/user/gomber', 'dryrun': 0, 'workflow': 'crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted', 'adduserfiles': [], 'nonprodsw': 1, 'tfileoutfiles': ['Ntuple_Stage3_mc.root'], 'oneEventMode': 0, 'cacheurl': 'https://cmsweb.cern.ch/crabcache', 'saveoutput': 1, 'publication': 0, 'jobarch': 'slc6_amd64_gcc530', 'totalunits': -1, 'splitalgo': 'FileBased', 'nonvaliddata': 0, 'dbsurl': 'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', 'publishgroupname': 0, 'jobtype': 'Analysis', 'publishname2': ''} 
+DEBUG 2016-05-17 07:33:25,025: 	 Encoded submit request: maxjobruntime=1250&ignorelocality=0&savelogsflag=0&useparent=1&asyncdest=T2_US_Wisconsin&algoargs=1&cachefilename=3339e90a4a586cfc9e4de7e81cc939d6e1d9a25ee65182f47c2e26d6ea6fdeb2.tar.gz&numcores=1&generator=pythia&maxmemory=2000&publishdbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fphys03%2FDBSWriter&priority=10&jobsw=CMSSW_8_0_7&primarydataset=&inputdata=%2FWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8%2FRunIIFall15DR76-25nsFlat10to50ZsecalNzshcalRaw_76X_mcRun2_asymptotic_2016EcalTune_30fb_v1-v1%2FAODSIM&lfn=%2Fstore%2Fuser%2Fgomber&dryrun=0&workflow=crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted&nonprodsw=1&oneEventMode=0&cacheurl=https%3A%2F%2Fcmsweb.cern.ch%2Fcrabcache&saveoutput=1&publication=0&jobarch=slc6_amd64_gcc530&totalunits=-1&splitalgo=FileBased&nonvaliddata=0&dbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fglobal%2FDBSReader&publishgroupname=0&jobtype=Analysis&publishname2=&tfileoutfiles=Ntuple_Stage3_mc.root
+DEBUG 2016-05-17 07:33:25,958: 	 Result: {'result': [{'RequestName': '160517_123325:gomber_crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted'}]}
+INFO 2016-05-17 07:33:25,963: 	 Success: Your task has been delivered to the CRAB3 server.
+INFO 2016-05-17 07:33:25,964: 	 Task name: 160517_123325:gomber_crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted
+INFO 2016-05-17 07:33:25,964: 	 Please use 'crab status' to check how the submission process proceeds.
+DEBUG 2016-05-17 07:33:25,964: 	 About to return
+INFO 2016-05-17 07:33:25,972: 	 Log file is /nfs_scratch/gomber/Stage3/807_up/CMSSW_8_0_7/src/L1Trigger/L1Analyzer/test/crab_workArea/crab_WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8__May12_CorrectEleID_fixneighbour_sorted/crab.log

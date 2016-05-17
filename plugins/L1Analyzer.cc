@@ -35,6 +35,13 @@
 
 using namespace edm;
 
+class PtSortCriterium{
+public:
+  bool operator() (l1extra::L1EmParticle p1,l1extra::L1EmParticle p2 ){
+    return p1.pt() > p2.pt();
+  }
+};
+
 
 L1Analyzer::L1Analyzer(const edm::ParameterSet& cfg):
   ecalSrc_(consumes<EcalTrigPrimDigiCollection>(cfg.getParameter<edm::InputTag>("ecalDigis"))),
@@ -46,6 +53,7 @@ L1Analyzer::L1Analyzer(const edm::ParameterSet& cfg):
   l1ExtraEMSource_(consumes<vector <l1extra::L1EmParticle> >(cfg.getParameter<edm::InputTag>("l1ExtraEMSource"))),
   pfMetToken_(consumes<reco::PFMETCollection>(cfg.getUntrackedParameter<edm::InputTag>("pfMetToken"))),
   caloMetToken_(consumes<reco::CaloMETCollection>(cfg.getUntrackedParameter<edm::InputTag>("caloMetToken"))),
+  caloMetTokenBE_(consumes<reco::CaloMETCollection>(cfg.getUntrackedParameter<edm::InputTag>("caloMetTokenBE"))),
   ElectronToken_(consumes<reco::GsfElectronCollection>(cfg.getUntrackedParameter<edm::InputTag>("ElectronToken"))),
   ElectronVetoIdMapToken_(consumes<edm::ValueMap<bool> >(cfg.getUntrackedParameter<edm::InputTag>("eleVetoIdMapToken"))),
   ElectronLooseIdMapToken_(consumes<edm::ValueMap<bool> >(cfg.getUntrackedParameter<edm::InputTag>("eleLooseIdMapToken"))),
@@ -90,6 +98,23 @@ L1Analyzer::L1Analyzer(const edm::ParameterSet& cfg):
   tree_->Branch("PFmetpx",         &PFmetpx_);
   tree_->Branch("PFmetpy",         &PFmetpy_);
   tree_->Branch("PFmeteta",         &PFmeteta_);
+
+
+
+  tree_->Branch("Calomet",         &Calomet_);
+  tree_->Branch("Calometphi",         &Calometphi_);
+  tree_->Branch("Calometeta",         &Calometeta_);
+  tree_->Branch("Calometpx",         &Calometpx_);
+  tree_->Branch("Calometpy",         &Calometpy_);
+  tree_->Branch("CaloSumet",         &CaloSumet_);
+
+
+  tree_->Branch("CalometBE",         &CalometBE_);
+  tree_->Branch("CalometBEphi",         &CalometBEphi_);
+  tree_->Branch("CalometBEeta",         &CalometBEeta_);
+  tree_->Branch("CalometBEpx",         &CalometBEpx_);
+  tree_->Branch("CalometBEpy",         &CalometBEpy_);
+  tree_->Branch("CaloSumetBE",         &CaloSumetBE_);
 
   tree_->Branch("nrecoele",         &nrecoele_);
   tree_->Branch("Elee",         &Elee_);
@@ -153,9 +178,17 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
   edm::Handle < vector<l1extra::L1EmParticle> > l1ExtraIsoEM;
   evt.getByToken(l1ExtraIsoEMSource_, l1ExtraIsoEM);
 
-
   edm::Handle < vector<l1extra::L1EmParticle> > l1ExtraEM;
   evt.getByToken(l1ExtraEMSource_, l1ExtraEM);
+
+  std::vector<l1extra::L1EmParticle> myl1IsoEMcont;  
+  myl1IsoEMcont.clear();
+
+
+  std::vector<l1extra::L1EmParticle> myl1EMcont;  
+  myl1EMcont.clear();
+
+
 
 
   edm::Handle <l1t::EtSumBxCollection> l1ExtraMETStage2;
@@ -172,6 +205,9 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
 
   edm::Handle<reco::CaloMETCollection> caloMet;
   evt.getByToken(caloMetToken_, caloMet);
+
+  edm::Handle<reco::CaloMETCollection> caloMetBE;
+  evt.getByToken(caloMetTokenBE_, caloMetBE);
 
   edm::Handle<reco::GsfElectronCollection> recoElectrons;
   evt.getByToken(ElectronToken_, recoElectrons);
@@ -267,7 +303,21 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
       Calometpy_ = it->py();
       Calometeta_ = it->eta();
       CaloSumet_ = it->sumEt();
-      //      std::cout<<"CaloMET: "<<Calomet_<<" CaloSumet_:"<<CaloSumet_<<std::endl;
+      std::cout<<"CaloMET: "<<Calomet_<<" CaloSumet_:"<<CaloSumet_<<std::endl;
+      
+    }
+  }
+
+
+  if (caloMetBE.isValid()) {
+    for(reco::CaloMETCollection::const_iterator it = caloMetBE->begin(); it!= caloMetBE->end(); it++ ){
+      CalometBE_ = it->et();
+      CalometBEphi_ = it->phi();
+      CalometBEpx_ = it->px();
+      CalometBEpy_ = it->py();
+      CalometBEeta_ = it->eta();
+      CaloSumetBE_ = it->sumEt();
+      std::cout<<"CaloMET without HF: "<<CalometBE_<<" CaloSumet_:"<<CaloSumetBE_<<std::endl;
       
     }
   }
@@ -305,7 +355,7 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
 	
 	nrecoele_++;
 	
-	std::cout<<"nrecoele_ "<<nrecoele_<<" Elept_ "<<el->pt()<<" Eleeta_ "<<el->eta()<<" Eleiso_ "<<iso<<std::endl;
+	std::cout<<"nrecoele_ "<<nrecoele_<<" Elept_ "<<el->pt()<<" Eleeta_ "<<el->eta()<<" Eleiso_ "<<iso<<"EleisLooseElectron_:"<< (*(eleVIDDecisionHandles[1]))[electronEdmRef]<<" EleisMediumElectron_ "<<(*(eleVIDDecisionHandles[2]))[electronEdmRef]<<std::endl;
 
       }
 
@@ -409,27 +459,46 @@ L1Analyzer::analyze(const edm::Event& evt, const edm::EventSetup& es)
 
   if(l1ExtraIsoEM.isValid()){
     for( vector<l1extra::L1EmParticle>::const_iterator l1isoem = l1ExtraIsoEM->begin(); l1isoem!= l1ExtraIsoEM->end(); l1isoem++ ){
-      l1isoEmEt_.push_back(l1isoem->et());
-      l1isoEmEta_.push_back(l1isoem->eta());
-      l1isoEmPhi_.push_back(l1isoem->phi());
-      l1isoEmBx_.push_back(l1isoem->bx());
-      nl1isoEm_++;
-      std::cout<<"l1 Iso EM Stage 2:"<<l1isoem->et()<<std::endl;
+      myl1IsoEMcont.push_back(*l1isoem);
+      //      std::cout<<"l1 Iso EM Stage 3 wo pt ordered:"<<l1isoem->et()<<std::endl;
     }
-    
+
   }
+
+  if(myl1IsoEMcont.size()>1) std::sort(myl1IsoEMcont.begin(),myl1IsoEMcont.end(),PtSortCriterium());
+  
+  for(unsigned int x=0;x < myl1IsoEMcont.size(); x++){
+    l1isoEmEt_.push_back(myl1IsoEMcont[x].et());
+    l1isoEmEta_.push_back(myl1IsoEMcont[x].eta());
+    l1isoEmPhi_.push_back(myl1IsoEMcont[x].phi());
+    l1isoEmBx_.push_back(myl1IsoEMcont[x].bx());
+    nl1isoEm_++;
+    //std::cout<<"l1 Iso EM Stage 3:"<<myl1IsoEMcont[x].et()<<std::endl;
+  }
+  
+
 
 
   if(l1ExtraEM.isValid()){
     for( vector<l1extra::L1EmParticle>::const_iterator l1em = l1ExtraEM->begin(); l1em!= l1ExtraEM->end(); l1em++ ){
-      l1nonIsoEmEt_.push_back(l1em->et());
-      l1nonIsoEmEta_.push_back(l1em->eta());
-      l1nonIsoEmPhi_.push_back(l1em->phi());
-      l1nonIsoEmBx_.push_back(l1em->bx());
-      nl1nonIsoEm_++;
+      myl1EMcont.push_back(*l1em);
+      //std::cout<<"l1 Non Iso EM Stage 3 wo pt ordered:"<<l1em->et()<<std::endl;
     }
-    
+
   }
+
+  if(myl1EMcont.size()>1) std::sort(myl1EMcont.begin(),myl1EMcont.end(),PtSortCriterium());
+
+  for(unsigned int x=0;x < myl1EMcont.size(); x++){
+      l1nonIsoEmEt_.push_back(myl1EMcont[x].et());
+      l1nonIsoEmEta_.push_back(myl1EMcont[x].eta());
+      l1nonIsoEmPhi_.push_back(myl1EMcont[x].phi());
+      l1nonIsoEmBx_.push_back(myl1EMcont[x].bx());
+      nl1nonIsoEm_++;
+      //      std::cout<<"l1 Non-Iso EM Stage 3:"<<myl1EMcont[x].et()<<std::endl;
+  }
+    
+  
 
 
 
